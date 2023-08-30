@@ -138,7 +138,9 @@ AZ='so-wrong-az'
 
 if [ -z "$VOLID" ]; then
     AZ=$(aws ec2 describe-availability-zones | jq -r '.AvailabilityZones[].ZoneName' | sort -R | head -n1)
-    aws ec2 create-volume --availability-zone "$AZ" --size "$SIZE" --tag-specifications "ResourceType=volume,Tags=[{Key=proj,Value=$PROJ}]"
+    aws ec2 create-volume --availability-zone "$AZ" \
+        --size "$SIZE" --tag-specifications "ResourceType=volume,Tags=[{Key=proj,Value=$PROJ}]" \
+        --volume-type gp3 
     VOLID=$(VolID)
 else 
     AZ="$(VolAZ)"

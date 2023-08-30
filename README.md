@@ -5,7 +5,10 @@ shutdown after a time.
 
 The instance will have an additional persistent EBS volume created and attached
 so next time you run it for the same project and size, the existing volume will
-be attached and mounted under /work
+be attached and mounted under /work.
+
+In addition, an SSM profile will be attached (and created if needed) and SSM
+Connect will be used to connect to the instance
 
 Usage: ef2 -p [project] -d [duration] -s [size] -t [instance type] -v
 
